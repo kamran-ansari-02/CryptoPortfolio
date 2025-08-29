@@ -4,12 +4,11 @@ struct MainView: View {
     @State private var selectedTab: Tab = .Analytics
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Content area (changes depending on selectedTab)
-            ZStack {
+        ZStack(alignment: .bottom) {
+            Group{
                 switch selectedTab {
                 case .Analytics:
-                    Text("Analytics Screen")
+                    AnalyticsView()
                 case .Exchange:
                     Text("Exchange Screen")
                 case .Record:
@@ -18,10 +17,26 @@ struct MainView: View {
                     Text("Wallet Screen")
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+            .overlay(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .mask {
+                           LinearGradient(
+                                stops: [
+                                    .init(color: .black, location: 0.3),  // bottom
+                                    .init(color: .clear, location: 0.9)   // fade ends 90% up
+                                ],
+                               startPoint: .bottom,
+                               endPoint: .top
+                           )
+                       }
+                    .frame(height: 150)
+                , alignment: .bottom
+            )
+            .ignoresSafeArea(.all)
             // Custom tab bar at the bottom
             CustomTabBar(selectedTab: $selectedTab)
+            
         }
     }
 }

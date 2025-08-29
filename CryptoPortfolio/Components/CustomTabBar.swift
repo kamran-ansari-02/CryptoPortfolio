@@ -43,13 +43,12 @@ struct CustomTabBar: View {
             .padding(8)
             .background(
                 Capsule()
-                    .fill(Color.black.opacity(0.85))
-                    .shadow(radius: 8)
+                    .fill(Color("Tab_Bar_BG"))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 999)
                     .inset(by: 0.5)
-                    .stroke(.white.opacity(0.3), lineWidth: 1)
+                    .stroke(.white.opacity(0.3), lineWidth: 0.5)
             )
             
             // ✅ Show floating button only if Analytics is selected
@@ -72,8 +71,10 @@ struct CustomTabBar: View {
                 .transition(.scale.combined(with: .opacity))  // ✅ nice animation
                 .animation(.spring(), value: selectedTab)    // ✅ animate on change
             }
+           
         }
         .padding(.horizontal, 16)
+       
        
     }
 }
