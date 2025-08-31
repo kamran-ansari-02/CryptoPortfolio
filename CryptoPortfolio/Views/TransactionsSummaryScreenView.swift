@@ -2,22 +2,25 @@ import SwiftUI
 
 struct TransactionsSummaryScreenView: View {
     @StateObject private var vm = AnalyticsViewModel()
+    @Binding var showOverlays: Bool
     
     var body: some View {
-        ScrollView (.vertical,){
-            VStack {
-                PortfolioCardView(viewModel: vm)
-                    .padding(.top, 70)
-                    .padding(.bottom, 20)
+        NavigationStack{
+            ScrollView (.vertical,){
+                VStack {
+                    PortfolioCardView(viewModel: vm)
+                        .padding(.top, 70)
+                        .padding(.bottom, 20)
 
-                ActionButtonsBarView()
-                        
-                TransactionsSectionView(transactions: vm.transactions)
+                    ActionButtonsBarView(showOverlays: $showOverlays)
+                            
+                    TransactionsSectionView(transactions: vm.transactions)
+                }
             }
         }
     }
 }
 
 #Preview {
-    TransactionsSummaryScreenView()
+    TransactionsSummaryScreenView(showOverlays: .constant(true))
 }
