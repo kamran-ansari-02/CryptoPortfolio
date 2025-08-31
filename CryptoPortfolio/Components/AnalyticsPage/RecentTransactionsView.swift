@@ -13,7 +13,7 @@ struct RecentTransactionsView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 10)
                 
-                ForEach(transactions) { tx in
+                ForEach(transactions.prefix(3)) { tx in   // <-- only latest 3
                     TransactionRowCard(tx: tx)
                 }
             }
@@ -22,7 +22,6 @@ struct RecentTransactionsView: View {
         .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
-
 
 #Preview {
     RecentTransactionsView(transactions: [
@@ -49,6 +48,22 @@ struct RecentTransactionsView: View {
             amount: 1.250000,
             date: "15 March",
             isReceive: true
+        ),
+        RecentTransaction(
+            imageName: "Bitcoin_Logo",
+            symbol: "BTC",
+            type: "Receive",
+            amount: 0.004500,
+            date: "12 March",
+            isReceive: true
+        ),
+        RecentTransaction(
+            imageName: "Ether_Logo",
+            symbol: "ETH",
+            type: "Send",
+            amount: 0.800000,
+            date: "10 March",
+            isReceive: false
         )
     ])
 }

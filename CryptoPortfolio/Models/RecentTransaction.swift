@@ -8,4 +8,8 @@ struct RecentTransaction: Identifiable {
     let amount: Double     // e.g. 0.002126
     let date: String       // e.g. "20 March"
     let isReceive: Bool    // true = Receive, false = Send
+    
+    var transactionType: String {
+            isReceive ? "Receive" : "Send"
+        }
 }

@@ -5,38 +5,74 @@ struct MainView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Group{
+            // Content of selected tab
+            Group {
                 switch selectedTab {
                 case .Analytics:
                     AnalyticsView()
                 case .Exchange:
-                    Text("Exchange Screen")
+                    TransactionsSummaryScreenView()
                 case .Record:
                     Text("Record Screen")
                 case .Wallet:
                     Text("Wallet Screen")
                 }
             }
-            .overlay(
+          
+            
+            // Top bar (always visible across all screens)
+            VStack {
+                HStack {
+                    // Left menu button
+                    Button(action: {
+                        print("Menu tapped")
+                    }) {
+                        Image("Menu_Icon")
+                            .resizable()              // make scalable
+                            .scaledToFit()
+                            .frame(width: 62, height: 62) // adjust size as needed
+                            .foregroundColor(.white)
+                    }
+                    
+                    Spacer()
+                    
+                    // Right bell button
+                    Button(action: {
+                        print("Bell tapped")
+                    }) {
+                        Image("Notify_Icon")
+                            .resizable()              // make scalable
+                            .scaledToFit()
+                            .frame(width: 62, height: 62) // adjust size as needed
+                            .foregroundColor(.white)                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 0)
+                
+                Spacer()
+            }
+            
+            // Bottom blur + Custom TabBar
+            VStack {
+                Spacer()
                 Rectangle()
                     .fill(.ultraThinMaterial)
-                    .mask {
-                           LinearGradient(
-                                stops: [
-                                    .init(color: .black, location: 0.3),  // bottom
-                                    .init(color: .clear, location: 0.9)   // fade ends 90% up
-                                ],
-                               startPoint: .bottom,
-                               endPoint: .top
-                           )
-                       }
-                    .frame(height: 150)
-                , alignment: .bottom
-            )
+                    .mask(
+                        LinearGradient(
+                            stops: [
+                                .init(color: .black, location: 0.3),
+                                .init(color: .clear, location: 1)
+                            ],
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                    )
+                    .frame(height: 190)
+            }
             .ignoresSafeArea(.all)
-            // Custom tab bar at the bottom
+
             CustomTabBar(selectedTab: $selectedTab)
-            
+
         }
     }
 }

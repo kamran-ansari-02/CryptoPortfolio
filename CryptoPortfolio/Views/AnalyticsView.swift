@@ -5,9 +5,10 @@ struct AnalyticsView: View {
     @StateObject private var vm = AnalyticsViewModel()
     
     var body: some View {
-        ScrollView (.vertical,){
+        ScrollView (.vertical){
             VStack {
                 AnalyticsHeaderView(viewModel: vm)
+                    .padding(.horizontal, 8)
                     .frame(height: 250)
                 
                 // Scrollable timeline + graph container

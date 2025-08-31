@@ -2,20 +2,29 @@ import SwiftUI
 
 struct TransactionRowCard: View {
     let tx: RecentTransaction
+    var overrideImage: String? = nil // optional system image name
     
     var body: some View {
         HStack {
             // Icon
-            Image(tx.imageName) // asset image: "btc.png", "eth.png", etc.
-                .resizable()
-                .scaledToFit()
-                .frame(width: 32, height: 32)
-//                .frame(
-//                    width:tx.imageName == "Bitcoin_Logo" ? 50 : 36,
-//                    height:tx.imageName == "Bitcoin_Logo" ? 50 : 36)
-                .padding(8)
-//                .background(tx.imageName == "Bitcoin_Logo" ? Color.clear.opacity(0.2) : Color.white.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+            if let override = overrideImage {
+                Image(systemName: override) // use system image if override provided
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+                    .padding(8)
+                    .background(Color("Custom_Light_Gray_BG"))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .foregroundColor(.white)
+            } else {
+                Image(tx.imageName) // asset image fallback
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .padding(8)
+                    .background(tx.imageName == "Bitcoin_Logo" ? Color.clear.opacity(0.2) : Color.white.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
             
             // Left info
             VStack(alignment: .leading, spacing: 4) {

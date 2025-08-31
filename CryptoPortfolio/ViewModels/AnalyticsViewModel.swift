@@ -5,6 +5,7 @@ class AnalyticsViewModel: ObservableObject {
     @Published var selectedRange: String = "6m"
     @Published var selectedIndex: Int? = nil   // <-- new property
     
+    // ✅ Added 5 mock transactions
     @Published var transactions: [RecentTransaction] = [
         RecentTransaction(
             imageName: "Bitcoin_Logo",
@@ -24,14 +25,29 @@ class AnalyticsViewModel: ObservableObject {
         ),
         RecentTransaction(
             imageName: "Exchange_TabBar_Icon",
-            symbol: "ETH",
+            symbol: "BTH",
             type: "Receive",
             amount: 1.250000,
             date: "15 March",
             isReceive: true
+        ),
+        RecentTransaction(
+            imageName: "Bitcoin_Logo",
+            symbol: "LTC",
+            type: "Send",
+            amount: 2.750000,
+            date: "13 March",
+            isReceive: false
+        ),
+        RecentTransaction(
+            imageName: "Bitcoin_Logo",
+            symbol: "DOGE",
+            type: "Receive",
+            amount: 500.000000,
+            date: "10 March",
+            isReceive: true
         )
     ]
-
     
     // Mock portfolio trend data for each time range
     @Published var chartDataByRange: [String: [Double]] = [
@@ -49,16 +65,11 @@ class AnalyticsViewModel: ObservableObject {
         chartDataByRange[selectedRange] ?? []
     }
     
-    // Assets & transactions
+    // Assets
     @Published var assets: [CryptoAsset] = [
         CryptoAsset(symbol: "BTC", name: "Bitcoin", price: 3000000, delta: 2.5, imageName: "Bitcoin_Logo"),
         CryptoAsset(symbol: "ETH", name: "Ether", price: 200000, delta: -1.2, imageName: "Ether_Logo")
     ]
-    
-//    @Published var transactions: [CryptoTransaction] = [
-//        CryptoTransaction(id: UUID(), type: .receive, token: "BTC", amount: 0.01, date: Date(), imageName: "Bitcoin_Logo"),
-//        CryptoTransaction(id: UUID(), type: .send, token: "ETH", amount: 0.5, date: Date().addingTimeInterval(-86400), imageName: "Ether_Logo")
-//    ]
     
     var portfolioINR: Double {
         assets.reduce(0) { $0 + $1.price }
