@@ -101,7 +101,14 @@ CryptoPortfolio/
 ```markdown
 ## 📸 Screenshots
 
-| Analytics Screen | Transactions Summary | Exchange View |
-|------------------|----------------------|---------------|
-| ![Analytics](screenshots/analytics.png) | ![Transactions](screenshots/transactions.png) | ![Exchange](screenshots/exchange.png) |
+### Analytics Screen
+![Analytics](https://github.com/kamran-ansari-02/CryptoPortfolio/blob/8d4e5a51d5c3a1276b7c58061286a3b9db6dd8ab/Analytics%20page.png)
 
+### Transactions Summary
+![Transactions](https://github.com/kamran-ansari-02/CryptoPortfolio/blob/8d4e5a51d5c3a1276b7c58061286a3b9db6dd8ab/Transaction%20summary%20Screen.png)
+
+### Exchange View
+![Exchange](https://github.com/kamran-ansari-02/CryptoPortfolio/blob/8d4e5a51d5c3a1276b7c58061286a3b9db6dd8ab/Exchange%20page.png)
+
+## 📸 Screen Recording
+[▶️ Watch Screen Recording](https://github.com/kamran-ansari-02/CryptoPortfolio/blob/f90748fb535cf0a779008bcad7fccd1969fc3809/Crypto%20portfolio%20screenrecord.mov)
